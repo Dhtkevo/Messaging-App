@@ -16,8 +16,9 @@ function RegisterPage() {
           <input
             type="text"
             name="username"
+            minLength={4}
             required
-            className="border border-black rounded-full p-2"
+            className="border border-black rounded-full p-2 bg-white"
           />
         </div>
         <div className="flex justify-center items-center gap-2">
@@ -28,7 +29,7 @@ function RegisterPage() {
             type="password"
             name="password"
             required
-            className="border border-black rounded-full p-2"
+            className="border border-black rounded-full p-2 bg-white"
           />
         </div>
         <button className="border border-black w-1/2 mt-4 h-8 rounded-full hover:bg-amber-300 hover:cursor-pointer">
