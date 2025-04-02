@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 function Profile() {
   return (
@@ -22,6 +23,11 @@ function Profile() {
           Change Username
         </button>
       </form>
+      <Link to="/">
+        <button className="bg-orange-400 border border-black rounded-3xl px-4 py-2 text-white mt-8 hover:bg-orange-700 hover:cursor-pointer">
+          Dashboard
+        </button>
+      </Link>
     </div>
   );
 }

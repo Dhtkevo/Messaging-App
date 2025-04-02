@@ -1,5 +1,6 @@
 import React from "react";
 import Message from "../Message/Message";
+import { Link } from "react-router";
 
 function Dashboard() {
   return (
@@ -7,12 +8,16 @@ function Dashboard() {
       <div className="flex items-center gap-4">
         <h1 className="text-6xl font-bold">*User's* Dashboard</h1>
         <div className="flex justify-center items-center gap-2">
-          <button className="bg-green-400 border border-black rounded-3xl px-4 py-2 text-white hover:bg-green-700 hover:cursor-pointer">
-            New Message
-          </button>
-          <button className="bg-orange-400 border border-black rounded-3xl px-4 py-2 text-white  hover:bg-orange-700 hover:cursor-pointer">
-            Profile
-          </button>
+          <Link to="/messages">
+            <button className="bg-green-400 border border-black rounded-3xl px-4 py-2 text-white hover:bg-green-700 hover:cursor-pointer">
+              New Message
+            </button>
+          </Link>
+          <Link to="/profile">
+            <button className="bg-orange-400 border border-black rounded-3xl px-4 py-2 text-white  hover:bg-orange-700 hover:cursor-pointer">
+              Profile
+            </button>
+          </Link>
         </div>
       </div>
       <div className="border border-fuchsia-400 rounded-4xl w-3/4 h-full p-2">

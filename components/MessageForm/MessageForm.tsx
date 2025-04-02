@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router";
 
 function MessageForm() {
   return (
-    <div className="h-screen bg-amber-100 flex justify-center items-center">
+    <div className="h-screen bg-amber-100 flex flex-col gap-8 justify-center items-center">
       <form
         method="post"
         action={""}
@@ -36,6 +37,11 @@ function MessageForm() {
           Send
         </button>
       </form>
+      <Link to="/">
+        <button className="bg-orange-400 border border-black rounded-3xl px-4 py-2 text-white  hover:bg-orange-700 hover:cursor-pointer">
+          Dashboard
+        </button>
+      </Link>
     </div>
   );
 }
