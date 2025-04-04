@@ -1,12 +1,16 @@
 import React from "react";
 import Message from "../Message/Message";
 import { Link } from "react-router";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
 function Dashboard() {
+  const { user } = useContext(UserContext);
+
   return (
     <div className="h-screen bg-fuchsia-200 flex flex-col gap-4 items-center p-8">
       <div className="flex items-center gap-4">
-        <h1 className="text-6xl font-bold">*User's* Dashboard</h1>
+        <h1 className="text-6xl font-bold">{user?.username}'s Dashboard</h1>
         <div className="flex justify-center items-center gap-2">
           <Link to="/messages">
             <button className="bg-green-400 border border-black rounded-3xl px-4 py-2 text-white hover:bg-green-700 hover:cursor-pointer">
