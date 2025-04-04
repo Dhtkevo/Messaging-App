@@ -1,7 +1,17 @@
-import React from "react";
-import { Link } from "react-router";
+import React, { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router";
+import { UserContext } from "../../context/UserContext";
 
 function MessageForm() {
+  const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
+
   return (
     <div className="h-screen bg-amber-100 flex flex-col gap-8 justify-center items-center">
       <form

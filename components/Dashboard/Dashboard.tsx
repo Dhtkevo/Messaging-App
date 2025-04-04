@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Message from "../Message/Message";
 import { Link } from "react-router";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router";
 
 function Dashboard() {
   const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
 
   return (
     <div className="h-screen bg-fuchsia-200 flex flex-col gap-4 items-center p-8">

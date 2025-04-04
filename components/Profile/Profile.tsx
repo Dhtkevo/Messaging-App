@@ -1,14 +1,21 @@
-import React, { useContext } from "react";
-import { Link } from "react-router";
+import React, { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router";
 import { UserContext } from "../../context/UserContext";
 
 function Profile() {
   const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
 
   return (
     <div className="h-screen bg-fuchsia-100 flex flex-col gap-4 justify-center items-center">
       <div className="flex flex-col gap-28 text-5xl font-bold">
-        <h1>{user!.username}'s' Profile Page</h1>
+        <h1>{user ? `${user.username}'s` : ""} Profile Page</h1>
       </div>
       <h2 className="text-3xl mb-40">You have *0* messages in your inbox!</h2>
       <form method="put" action={""} className="flex gap-2">
