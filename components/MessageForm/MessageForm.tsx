@@ -14,6 +14,7 @@ function MessageForm() {
     await fetch("http://localhost:3000/users/" + user!.id + "/inbox", {
       method: "POST",
       headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ targetUsername, sendingUserId: user!.id, text }),

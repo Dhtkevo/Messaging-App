@@ -21,7 +21,9 @@ function Dashboard() {
       navigate("/login");
       return;
     } else {
-      fetch("http://localhost:3000/users/" + user.id + "/inbox")
+      fetch("http://localhost:3000/users/" + user.id + "/inbox", {
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+      })
         .then((response) => response.json())
         .then((response) => setMessages(response));
     }
