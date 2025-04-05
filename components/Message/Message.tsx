@@ -12,7 +12,7 @@ function Message({ text, userId, messageId }: MessageProps) {
   const handleDelete = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    await fetch("http://localhost:3000/messages/" + messageId, {
+    await fetch(import.meta.env.VITE_CORE_URL + "/messages/" + messageId, {
       method: "DELETE",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -21,7 +21,7 @@ function Message({ text, userId, messageId }: MessageProps) {
   };
 
   useEffect(() => {
-    fetch("http://localhost:3000/users/" + userId, {
+    fetch(import.meta.env.VITE_CORE_URL + "/users/" + userId, {
       headers: { Authorization: "Bearer " + localStorage.getItem("token") },
     })
       .then((response) => response.json())

@@ -21,7 +21,7 @@ function Dashboard() {
       navigate("/login");
       return;
     } else {
-      fetch("http://localhost:3000/users/" + user.id + "/inbox", {
+      fetch(import.meta.env.VITE_CORE_URL + "/users/" + user.id + "/inbox", {
         headers: { Authorization: "Bearer " + localStorage.getItem("token") },
       })
         .then((response) => response.json())
