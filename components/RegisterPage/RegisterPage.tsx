@@ -15,6 +15,8 @@ function RegisterPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
+    if (username.length === 0 || password.length === 0) return;
+
     const response = await fetch(
       import.meta.env.VITE_CORE_URL + "/users/register",
       {
