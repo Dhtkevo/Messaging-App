@@ -1,10 +1,26 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { UserContext } from "../../context/UserContext";
 
 function MessageForm() {
+  const [targetUsername, setTargetUsername] = useState("");
+  const [text, setText] = useState("");
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
+
+  const handleSendMessage = async (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    await fetch("http://localhost:3000/users/" + user!.id + "/inbox", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ targetUsername, sendingUserId: user!.id, text }),
+    });
+
+    navigate("/");
+  };
 
   useEffect(() => {
     if (!user) {
@@ -29,6 +45,8 @@ function MessageForm() {
             required
             minLength={4}
             className="bg-white py-1 px-2 rounded-2xl"
+            value={targetUsername}
+            onChange={(e) => setTargetUsername(e.target.value)}
           />
         </div>
         <div className="flex flex-col">
@@ -41,9 +59,14 @@ function MessageForm() {
             rows={5}
             required
             className="bg-white rounded-2xl p-1 resize-none"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
           />
         </div>
-        <button className="text-lg bg-green-300 rounded-2xl border hover:bg-green-600 hover:cursor-pointer hover:text-white">
+        <button
+          onClick={handleSendMessage}
+          className="text-lg bg-green-300 rounded-2xl border hover:bg-green-600 hover:cursor-pointer hover:text-white"
+        >
           Send
         </button>
       </form>
