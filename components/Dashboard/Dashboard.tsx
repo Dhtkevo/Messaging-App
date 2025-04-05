@@ -1,19 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Message from "../Message/Message";
 import { Link } from "react-router";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { useNavigate } from "react-router";
 
+interface MessageType {
+  id: number;
+  text: string;
+  userId: number;
+}
+
 function Dashboard() {
   const { user } = useContext(UserContext);
+  const [messages, setMessages] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!user) {
       navigate("/login");
+      return;
+    } else {
+      fetch("http://localhost:3000/users/" + user.id + "/inbox")
+        .then((response) => response.json())
+        .then((response) => setMessages(response));
     }
   }, [user]);
+
+  const displayMessages = messages.map((message: MessageType) => (
+    <Message key={message.id} text={message.text} userId={message.userId} />
+  ));
 
   return (
     <div className="h-screen bg-fuchsia-200 flex flex-col gap-4 items-center p-8">
@@ -33,7 +49,7 @@ function Dashboard() {
         </div>
       </div>
       <div className="border border-fuchsia-400 rounded-4xl w-3/4 h-full p-2">
-        <Message />
+        {displayMessages}
       </div>
     </div>
   );
