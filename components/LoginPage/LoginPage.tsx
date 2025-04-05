@@ -14,6 +14,12 @@ function LoginPage() {
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext);
 
+  const handleRegiserButtonClick = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    navigate("/register");
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
@@ -79,6 +85,12 @@ function LoginPage() {
           className="border border-black w-1/2 mt-4 h-8 rounded-full hover:bg-amber-300 hover:cursor-pointer"
         >
           Log In
+        </button>
+        <button
+          onClick={handleRegiserButtonClick}
+          className="border border-black w-1/2 mt-4 h-8 rounded-full hover:bg-amber-300 hover:cursor-pointer"
+        >
+          Sign Up
         </button>
       </form>
     </div>
