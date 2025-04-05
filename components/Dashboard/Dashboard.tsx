@@ -25,10 +25,15 @@ function Dashboard() {
         .then((response) => response.json())
         .then((response) => setMessages(response));
     }
-  }, [user]);
+  }, [user, messages]);
 
   const displayMessages = messages.map((message: MessageType) => (
-    <Message key={message.id} text={message.text} userId={message.userId} />
+    <Message
+      key={message.id}
+      messageId={message.id}
+      text={message.text}
+      userId={message.userId}
+    />
   ));
 
   return (
