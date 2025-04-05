@@ -27,7 +27,7 @@ function Dashboard() {
         .then((response) => response.json())
         .then((response) => setMessages(response));
     }
-  }, [user, messages]);
+  }, [user]);
 
   const displayMessages = messages.map((message: MessageType) => (
     <Message
