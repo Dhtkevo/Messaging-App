@@ -14,11 +14,16 @@ function Message({ text, userId, messageId }: MessageProps) {
 
     await fetch("http://localhost:3000/messages/" + messageId, {
       method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
     });
   };
 
   useEffect(() => {
-    fetch("http://localhost:3000/users/" + userId)
+    fetch("http://localhost:3000/users/" + userId, {
+      headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+    })
       .then((response) => response.json())
       .then((response) => setFromUser(response.username));
   }, []);

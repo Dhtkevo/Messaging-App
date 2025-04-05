@@ -17,6 +17,7 @@ function Profile() {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
       },
       body: JSON.stringify({ newUsername, userId: user?.id }),
     });
@@ -29,7 +30,9 @@ function Profile() {
       navigate("/login");
       return;
     } else {
-      fetch("http://localhost:3000/users/" + user.id + "/inbox")
+      fetch("http://localhost:3000/users/" + user.id + "/inbox", {
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+      })
         .then((response) => response.json())
         .then((response) => setMessages(response));
     }
